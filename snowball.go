@@ -47,13 +47,13 @@ func (stemmer *Stmmer) Stem(word string) string {
 // List returns the list of languages supported by snowball
 func List() []string {
 	cnames := C.sb_stemmer_list()
-	size := int(unsafe.Sizeof(cnames) / unsafe.Sizeof(cnames[0]))
 	names = []string{}
-	for i := 0; i < size; i++ {
+	for i := 0; true; i++ {
 		name := C.GoString(names[i])
-		if len(name) > 0 {
-			names = append(names, name)
+		if len(name) == 0 { // names is ended by sentinal of NULL
+			break
 		}
+		names = append(names, name)
 	}
 
 	return names
