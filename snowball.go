@@ -3,7 +3,7 @@
 // Example:
 //  stemmer = snowball.New("en")
 //  fmt.Println(stemmer.stem("running")) // Will print "run"
-package main
+package snowball
 
 import (
 	"fmt"
@@ -12,7 +12,8 @@ import (
 
 // FIXME: Currently cgo does not find the source files in libstemmer_c/
 
-// #include "libstemmer_c/include/libstemmer.h"
+// #cgo CFLAGS: -Ilibstemmer_c/include
+// #include "libstemmer.h"
 import "C"
 
 type Stemmer struct {
