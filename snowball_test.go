@@ -24,7 +24,6 @@ func TestListEnglish(t *testing.T) {
 	}
 }
 
-
 func TestNew(t *testing.T) {
 	lang := "english"
 	stemmer, err := New(lang)
@@ -38,7 +37,6 @@ func TestNew(t *testing.T) {
 	}
 }
 
-
 func TestNewNoLang(t *testing.T) {
 	lang := "klingon"
 	_, err := New(lang)
@@ -47,7 +45,6 @@ func TestNewNoLang(t *testing.T) {
 		t.Fatal("dude, we have a klingon stemmer!")
 	}
 }
-
 
 func check(t *testing.T, lang, word, stem string) {
 	stemmer, err := New(lang)
@@ -60,7 +57,6 @@ func check(t *testing.T, lang, word, stem string) {
 		t.Fatalf("error stemming '%s', got %s instead of '%s'", word, w, stem)
 	}
 }
-
 
 func TestStemEn(t *testing.T) {
 	check(t, "english", "running", "run")
