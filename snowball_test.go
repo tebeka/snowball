@@ -34,3 +34,27 @@ func TestListEnglish(t *testing.T) {
 		t.Fatal("english not found")
 	}
 }
+
+
+func TestNew(t *testing.T) {
+	lang := "english"
+	stemmer, err := New(lang)
+
+	if err != nil {
+		t.Fatalf("error creating english stemmer - %s", err)
+	}
+
+	if stemmer.Lang() != lang {
+		t.Fatalf("lang is not english (is %s)", stemmer.Lang())
+	}
+}
+
+
+func TestNewNoLang(t *testing.T) {
+	lang := "klingon"
+	_, err := New(lang)
+
+	if err == nil {
+		t.Fatal("dude, we have a klingon stemmer!")
+	}
+}
