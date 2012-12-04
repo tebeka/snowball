@@ -1,7 +1,7 @@
 // snowball stemmer
 //
 // Example:
-//  stemmer = snowball.New("en")
+//  stemmer = snowball.New("english")
 //  fmt.Println(stemmer.stem("running")) // Will print "run"
 package snowball
 
