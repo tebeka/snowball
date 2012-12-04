@@ -11,6 +11,10 @@ import (
 	"unsafe"
 )
 
+const (
+	Version = "0.1.0"
+)
+
 
 // #include "libstemmer.h"
 import "C"
