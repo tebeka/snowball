@@ -6,12 +6,9 @@
 package snowball
 
 import (
-	"fmt"
-//	"runtime"
+	"unsafe"
 )
 
-
-// FIXME: Currently cgo does not find the source files in libstemmer_c/
 
 // #include "libstemmer.h"
 import "C"
@@ -48,15 +45,18 @@ func (stemmer *Stemmer) Stem(word string) string {
 
 // List returns the list of languages supported by snowball
 func List() []string {
-	cnames := C.sb_stemmer_list()
 	names := []string{}
-	for i := 0; true; i++ {
-		name := C.GoString(names[i])
-		if len(name) == 0 { // names is ended by sentinal of NULL
+
+	cp := uintptr(unsafe.Pointer(C.sb_stemmer_list()))
+	size := unsafe.Sizeof(uintptr(0))
+
+	for {
+		name := C.GoString(*(**C.char)(unsafe.Pointer(cp)))
+		if len(name) == 0 {
 			break
 		}
 		names = append(names, name)
+		cp += size
 	}
-
 	return names
 }
