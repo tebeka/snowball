@@ -26,14 +26,27 @@ func TestListEnglish(t *testing.T) {
 
 func TestNew(t *testing.T) {
 	lang := "english"
-	stemmer, err := New(lang)
+	stmr, err := New(lang)
 
 	if err != nil {
 		t.Fatalf("error creating english stemmer - %s", err)
 	}
 
-	if stemmer.Lang() != lang {
-		t.Fatalf("lang is not english (is %s)", stemmer.Lang())
+	if stmr.Lang() != lang {
+		t.Fatalf("lang is not english (is %s)", stmr.Lang())
+	}
+}
+
+func Test_free(t *testing.T) {
+	stmr, err := New("english")
+
+	if err != nil {
+		t.Fatalf("error creating english stemmer - %s", err)
+	}
+
+	free(stmr)
+	if stmr.stmr != nil {
+		t.Fatalf("didn't free C stemmer")
 	}
 }
 
@@ -47,12 +60,12 @@ func TestNewNoLang(t *testing.T) {
 }
 
 func check(t *testing.T, lang, word, stem string) {
-	stemmer, err := New(lang)
+	stmr, err := New(lang)
 	if err != nil {
 		t.Fatalf("can't create stemmer for %s - %s", lang, err)
 	}
 
-	w := stemmer.Stem(word)
+	w := stmr.Stem(word)
 	if w != stem {
 		t.Fatalf("error stemming '%s', got %s instead of '%s'", word, w, stem)
 	}

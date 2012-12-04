@@ -18,11 +18,13 @@ const (
 	Version = "0.1.0"
 )
 
+// Stemmer structure
 type Stemmer struct {
 	lang string
 	stmr *C.struct_sb_stemmer
 }
 
+// free C resources
 func free(stmr *Stemmer) {
 	if stmr.stmr != nil {
 		C.sb_stemmer_delete(stmr.stmr)
