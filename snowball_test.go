@@ -4,17 +4,6 @@ import (
 	"testing"
 )
 
-/*
-func TestStem(t *testing.T) {
-	stemmer = New("en")
-	word = "running"
-	stemmed = stemmer.Stem(word)
-	if stemmed != "run" {
-		t.Fatalf("stem(%s) -> '%s' (expected 'run')", word, stemmed)
-	}
-}
-*/
-
 func TestList(t *testing.T) {
 	if len(List()) == 0 {
 		t.Fatal("No langs")
@@ -57,4 +46,26 @@ func TestNewNoLang(t *testing.T) {
 	if err == nil {
 		t.Fatal("dude, we have a klingon stemmer!")
 	}
+}
+
+
+func check(t *testing.T, lang, word, stem string) {
+	stemmer, err := New(lang)
+	if err != nil {
+		t.Fatalf("can't create stemmer for %s - %s", lang, err)
+	}
+
+	w := stemmer.Stem(word)
+	if w != stem {
+		t.Fatalf("error stemming '%s', got %s instead of '%s'", word, w, stem)
+	}
+}
+
+
+func TestStemEn(t *testing.T) {
+	check(t, "english", "running", "run")
+}
+
+func TestStemDe(t *testing.T) {
+	check(t, "german", "käuflich", "kauflich")
 }

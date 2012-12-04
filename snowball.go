@@ -20,7 +20,10 @@ type Stemmer struct {
 }
 
 func free(stemmer *Stemmer) {
-	C.sb_stemmer_delete(stemmer.stemmer)
+	if stemmer.stemmer != nil {
+		C.sb_stemmer_delete(stemmer.stemmer)
+		stemmer.stemmer = nil
+	}
 }
 
 // New creates a new stemmer for lang
@@ -39,17 +42,21 @@ func New(lang string) (*Stemmer, error) {
 	return stemmer, nil
 }
 
+// Lang return the stemmer language
 func (stemmer *Stemmer) Lang() string {
 	return stemmer.lang
 }
 
-/*
 // Stem returns them stem of word (e.g. running -> run)
 func (stemmer *Stemmer) Stem(word string) string {
-	cstr := C.sb_stemmer_stem(stemmer.stemmer, C.CString(word), C.int(len(word)))
-	return C.GoString(cstr)
+	ptr := unsafe.Pointer(C.CString(word))
+	w := (*C.sb_symbol)(ptr)
+	res := unsafe.Pointer(C.sb_stemmer_stem(stemmer.stemmer, w, C.int(len(word))))
+	size := C.sb_stemmer_length(stemmer.stemmer)
+
+	buf := C.GoBytes(res, size)
+	return string(buf)
 }
-*/
 
 // List returns the list of languages supported by snowball
 func List() []string {
