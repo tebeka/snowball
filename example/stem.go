@@ -28,6 +28,8 @@ func main() {
 		os.Exit(1)
 	}
 
+	fmt.Println("Using snowball version", snowball.Version)
+
 	stmr, err := snowball.New(*lang)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "error: %s\n", err)
