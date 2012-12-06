@@ -10,12 +10,14 @@ import (
 	"runtime"
 	"unsafe"
 )
-
-// #include "libstemmer.h"
+/*
+#include <stdlib.h>
+#include "libstemmer.h"
+*/
 import "C"
 
 const (
-	Version = "0.1.0"
+	Version = "0.1.2"
 )
 
 // Stemmer structure
@@ -56,6 +58,8 @@ func (stmr *Stemmer) Lang() string {
 // Stem returns them stem of word (e.g. running -> run)
 func (stmr *Stemmer) Stem(word string) string {
 	ptr := unsafe.Pointer(C.CString(word))
+	defer C.free(ptr)
+
 	w := (*C.sb_symbol)(ptr)
 	res := unsafe.Pointer(C.sb_stemmer_stem(stmr.stmr, w, C.int(len(word))))
 	size := C.sb_stemmer_length(stmr.stmr)
@@ -68,6 +72,7 @@ func (stmr *Stemmer) Stem(word string) string {
 func List() []string {
 	names := []string{}
 
+	// We don't need to free since sb_stemmer_list return pointer to static variable
 	cp := uintptr(unsafe.Pointer(C.sb_stemmer_list()))
 	size := unsafe.Sizeof(uintptr(0))
 
