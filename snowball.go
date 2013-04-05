@@ -17,7 +17,7 @@ import (
 import "C"
 
 const (
-	Version = "0.1.2"
+	Version = "0.1.3"
 )
 
 // Stemmer structure
@@ -36,9 +36,12 @@ func free(stmr *Stemmer) {
 
 // New creates a new stemmer for lang
 func New(lang string) (*Stemmer, error) {
+	clang := C.CString(lang)
+	defer C.free(unsafe.Pointer(clang))
+
 	stmr := &Stemmer{
 		lang,
-		C.sb_stemmer_new(C.CString(lang), nil),
+		C.sb_stemmer_new(clang, nil),
 	}
 
 	if stmr.stmr == nil {
