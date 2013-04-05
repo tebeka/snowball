@@ -71,9 +71,13 @@ func (stmr *Stemmer) Stem(word string) string {
 	return string(buf)
 }
 
+// LangList returns the list of languages supported by snowball
+func LangList() []string {
+	return langList
+}
+
 var langList []string
 
-// List returns the list of languages supported by snowball
 func init() {
 	// We don't need to free since sb_stemmer_list return pointer to static variable
 	cp := uintptr(unsafe.Pointer(C.sb_stemmer_list()))
@@ -89,6 +93,3 @@ func init() {
 	}
 }
 
-func LangList() []string {
-	return langList
-}
