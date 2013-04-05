@@ -5,14 +5,14 @@ import (
 )
 
 func TestList(t *testing.T) {
-	if len(List()) == 0 {
+	if len(LangList()) == 0 {
 		t.Fatal("No langs")
 	}
 }
 
 func TestListEnglish(t *testing.T) {
 	found := false
-	for _, v := range List() {
+	for _, v := range LangList() {
 		if v == "english" {
 			found = true
 			break

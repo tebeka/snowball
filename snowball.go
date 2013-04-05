@@ -17,7 +17,7 @@ import (
 import "C"
 
 const (
-	Version = "0.1.3"
+	Version = "0.2.0"
 )
 
 // Stemmer structure
@@ -71,10 +71,10 @@ func (stmr *Stemmer) Stem(word string) string {
 	return string(buf)
 }
 
-// List returns the list of languages supported by snowball
-func List() []string {
-	names := []string{}
+var langList []string
 
+// List returns the list of languages supported by snowball
+func init() {
 	// We don't need to free since sb_stemmer_list return pointer to static variable
 	cp := uintptr(unsafe.Pointer(C.sb_stemmer_list()))
 	size := unsafe.Sizeof(uintptr(0))
@@ -84,8 +84,11 @@ func List() []string {
 		if len(name) == 0 {
 			break
 		}
-		names = append(names, name)
+		langList = append(langList, name)
 		cp += size
 	}
-	return names
+}
+
+func LangList() []string {
+	return langList
 }

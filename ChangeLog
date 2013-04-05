@@ -1,5 +1,6 @@
-2013-04-05 version 0.1.3
+2013-04-05 version 0.2.0
     * Fix possible memory leak
+    * List -> LangList (and done once in init)
 
 2012-12-06 version 0.1.2
     * Free memory
