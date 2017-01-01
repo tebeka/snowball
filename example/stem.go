@@ -1,12 +1,12 @@
+// +build ignore
+
+package main
+
 /*
 Example on using Snowball stemmer
 
 This program will read a file, then print "word -> stem(word)" for every word in file
 */
-
-// +build ignore
-
-package main
 
 import (
 	"bytes"
