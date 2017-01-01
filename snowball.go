@@ -1,4 +1,4 @@
-// snowball stemmer
+// Package snowball implements a stemmer
 //
 // Example:
 //  stemmer = snowball.New("english")
@@ -10,6 +10,7 @@ import (
 	"runtime"
 	"unsafe"
 )
+
 /*
 #include <stdlib.h>
 #include "libstemmer.h"
@@ -17,6 +18,7 @@ import (
 import "C"
 
 const (
+	// Version is the library version
 	Version = "0.2.0"
 )
 
@@ -92,4 +94,3 @@ func init() {
 		cp += size
 	}
 }
-
