@@ -20,7 +20,7 @@
 #include "stem_UTF_8_french.h"
 #include "stem_ISO_8859_1_german.h"
 #include "stem_UTF_8_german.h"
-#include "stem_ISO_8859_1_hungarian.h"
+#include "stem_ISO_8859_2_hungarian.h"
 #include "stem_UTF_8_hungarian.h"
 #include "stem_ISO_8859_1_italian.h"
 #include "stem_UTF_8_italian.h"
@@ -110,11 +110,11 @@ static struct stemmer_modules modules[] = {
   {"ger", ENC_UTF_8, german_UTF_8_create_env, german_UTF_8_close_env, german_UTF_8_stem},
   {"german", ENC_ISO_8859_1, german_ISO_8859_1_create_env, german_ISO_8859_1_close_env, german_ISO_8859_1_stem},
   {"german", ENC_UTF_8, german_UTF_8_create_env, german_UTF_8_close_env, german_UTF_8_stem},
-  {"hu", ENC_ISO_8859_1, hungarian_ISO_8859_1_create_env, hungarian_ISO_8859_1_close_env, hungarian_ISO_8859_1_stem},
+  {"hu", ENC_ISO_8859_2, hungarian_ISO_8859_2_create_env, hungarian_ISO_8859_2_close_env, hungarian_ISO_8859_2_stem},
   {"hu", ENC_UTF_8, hungarian_UTF_8_create_env, hungarian_UTF_8_close_env, hungarian_UTF_8_stem},
-  {"hun", ENC_ISO_8859_1, hungarian_ISO_8859_1_create_env, hungarian_ISO_8859_1_close_env, hungarian_ISO_8859_1_stem},
+  {"hun", ENC_ISO_8859_2, hungarian_ISO_8859_2_create_env, hungarian_ISO_8859_2_close_env, hungarian_ISO_8859_2_stem},
   {"hun", ENC_UTF_8, hungarian_UTF_8_create_env, hungarian_UTF_8_close_env, hungarian_UTF_8_stem},
-  {"hungarian", ENC_ISO_8859_1, hungarian_ISO_8859_1_create_env, hungarian_ISO_8859_1_close_env, hungarian_ISO_8859_1_stem},
+  {"hungarian", ENC_ISO_8859_2, hungarian_ISO_8859_2_create_env, hungarian_ISO_8859_2_close_env, hungarian_ISO_8859_2_stem},
   {"hungarian", ENC_UTF_8, hungarian_UTF_8_create_env, hungarian_UTF_8_close_env, hungarian_UTF_8_stem},
   {"it", ENC_ISO_8859_1, italian_ISO_8859_1_create_env, italian_ISO_8859_1_close_env, italian_ISO_8859_1_stem},
   {"it", ENC_UTF_8, italian_UTF_8_create_env, italian_UTF_8_close_env, italian_UTF_8_stem},

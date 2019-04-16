@@ -6,7 +6,7 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-extern int hungarian_ISO_8859_1_stem(struct SN_env * z);
+extern int hungarian_ISO_8859_2_stem(struct SN_env * z);
 #ifdef __cplusplus
 }
 #endif
@@ -29,8 +29,8 @@ extern "C" {
 #endif
 
 
-extern struct SN_env * hungarian_ISO_8859_1_create_env(void);
-extern void hungarian_ISO_8859_1_close_env(struct SN_env * z);
+extern struct SN_env * hungarian_ISO_8859_2_create_env(void);
+extern void hungarian_ISO_8859_2_close_env(struct SN_env * z);
 
 
 #ifdef __cplusplus
@@ -1137,7 +1137,7 @@ static int r_plur_owner(struct SN_env * z) {
     return 1;
 }
 
-extern int hungarian_ISO_8859_1_stem(struct SN_env * z) {
+extern int hungarian_ISO_8859_2_stem(struct SN_env * z) {
     {   int c1 = z->c; /* do, line 229 */
         {   int ret = r_mark_regions(z);
             if (ret == 0) goto lab0; /* call mark_regions, line 229 */
@@ -1224,7 +1224,7 @@ extern int hungarian_ISO_8859_1_stem(struct SN_env * z) {
     return 1;
 }
 
-extern struct SN_env * hungarian_ISO_8859_1_create_env(void) { return SN_create_env(0, 1, 0); }
+extern struct SN_env * hungarian_ISO_8859_2_create_env(void) { return SN_create_env(0, 1, 0); }
 
-extern void hungarian_ISO_8859_1_close_env(struct SN_env * z) { SN_close_env(z, 0); }
+extern void hungarian_ISO_8859_2_close_env(struct SN_env * z) { SN_close_env(z, 0); }
 

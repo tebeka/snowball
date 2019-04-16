@@ -136,14 +136,14 @@ static const symbol s_4_6[3] = { 'n', 'e', 'k' };
 static const symbol s_4_7[3] = { 'v', 'a', 'l' };
 static const symbol s_4_8[3] = { 'v', 'e', 'l' };
 static const symbol s_4_9[2] = { 'u', 'l' };
-static const symbol s_4_10[4] = { 'n', 0xC3, 0xA1, 'l' };
-static const symbol s_4_11[4] = { 'n', 0xC3, 0xA9, 'l' };
-static const symbol s_4_12[4] = { 'b', 0xC3, 0xB3, 'l' };
-static const symbol s_4_13[4] = { 'r', 0xC3, 0xB3, 'l' };
-static const symbol s_4_14[4] = { 't', 0xC3, 0xB3, 'l' };
-static const symbol s_4_15[4] = { 'b', 0xC3, 0xB5, 'l' };
-static const symbol s_4_16[4] = { 'r', 0xC3, 0xB5, 'l' };
-static const symbol s_4_17[4] = { 't', 0xC3, 0xB5, 'l' };
+static const symbol s_4_10[4] = { 'b', 0xC5, 0x91, 'l' };
+static const symbol s_4_11[4] = { 'r', 0xC5, 0x91, 'l' };
+static const symbol s_4_12[4] = { 't', 0xC5, 0x91, 'l' };
+static const symbol s_4_13[4] = { 'n', 0xC3, 0xA1, 'l' };
+static const symbol s_4_14[4] = { 'n', 0xC3, 0xA9, 'l' };
+static const symbol s_4_15[4] = { 'b', 0xC3, 0xB3, 'l' };
+static const symbol s_4_16[4] = { 'r', 0xC3, 0xB3, 'l' };
+static const symbol s_4_17[4] = { 't', 0xC3, 0xB3, 'l' };
 static const symbol s_4_18[3] = { 0xC3, 0xBC, 'l' };
 static const symbol s_4_19[1] = { 'n' };
 static const symbol s_4_20[2] = { 'a', 'n' };
@@ -460,7 +460,7 @@ static const struct among a_11[42] =
 /* 41 */ { 4, s_11_41, 35, 3, 0}
 };
 
-static const unsigned char g_v[] = { 17, 65, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 17, 52, 14 };
+static const unsigned char g_v[] = { 17, 65, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 17, 36, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1 };
 
 static const symbol s_0[] = { 'a' };
 static const symbol s_1[] = { 'e' };
@@ -502,8 +502,8 @@ static const symbol s_35[] = { 'e' };
 static int r_mark_regions(struct SN_env * z) {
     z->I[0] = z->l;
     {   int c1 = z->c; /* or, line 51 */
-        if (in_grouping_U(z, g_v, 97, 252, 0)) goto lab1;
-        if (in_grouping_U(z, g_v, 97, 252, 1) < 0) goto lab1; /* goto */ /* non v, line 48 */
+        if (in_grouping_U(z, g_v, 97, 369, 0)) goto lab1;
+        if (in_grouping_U(z, g_v, 97, 369, 1) < 0) goto lab1; /* goto */ /* non v, line 48 */
         {   int c2 = z->c; /* or, line 49 */
             if (z->c + 1 >= z->l || z->p[z->c + 1] >> 5 != 3 || !((101187584 >> (z->p[z->c + 1] & 0x1f)) & 1)) goto lab3;
             if (!(find_among(z, a_0, 8))) goto lab3; /* among, line 49 */
@@ -520,9 +520,9 @@ static int r_mark_regions(struct SN_env * z) {
         goto lab0;
     lab1:
         z->c = c1;
-        if (out_grouping_U(z, g_v, 97, 252, 0)) return 0;
+        if (out_grouping_U(z, g_v, 97, 369, 0)) return 0;
         {    /* gopast */ /* grouping v, line 53 */
-            int ret = out_grouping_U(z, g_v, 97, 252, 1);
+            int ret = out_grouping_U(z, g_v, 97, 369, 1);
             if (ret < 0) return 0;
             z->c += ret;
         }
