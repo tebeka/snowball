@@ -5,7 +5,8 @@ package main
 /*
 Example on using Snowball stemmer
 
-This program will read a file, then print "word -> stem(word)" for every word in file
+This program will read a file, then print "word -> stem(word)" for every word
+in file
 */
 
 import (
