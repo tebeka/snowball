@@ -12,7 +12,7 @@ func Example() {
 		fmt.Println("error", err)
 		return
 	}
-	fmt.Println(stemmer.Stem("running")) // Will print "run"
+	fmt.Println(stemmer.Stem("running"))
 	// Output:
 	// run
 }
