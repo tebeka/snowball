@@ -1,8 +1,4 @@
 // Package snowball implements a stemmer
-//
-// Example:
-//  stemmer = snowball.New("english")
-//  fmt.Println(stemmer.stem("running")) // Will print "run"
 package snowball
 
 import (
