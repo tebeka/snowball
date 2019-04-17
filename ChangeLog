@@ -1,12 +1,16 @@
+2019-04-17 version 0.3.0
+* Bump C lib version
+* example_test.go
+
 2013-04-05 version 0.2.0
-    * Fix possible memory leak
-    * List -> LangList (and done once in init)
+* Fix possible memory leak
+* List -> LangList (and done once in init)
 
 2012-12-06 version 0.1.2
-    * Free memory
+* Free memory
 
 2012-12-03 version 0.1.1
-    * Minor improvements
+* Minor improvements
 
 2012-12-03 version 0.1.0
-    * Initial release
+* Initial release
