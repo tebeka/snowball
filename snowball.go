@@ -15,7 +15,7 @@ import "C"
 
 const (
 	// Version is the library version
-	Version = "0.4.0"
+	Version = "0.4.1"
 )
 
 // Stemmer structure
