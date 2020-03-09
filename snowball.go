@@ -63,8 +63,13 @@ func (stmr *Stemmer) Stem(word string) string {
 
 	w := (*C.sb_symbol)(ptr)
 	res := unsafe.Pointer(C.sb_stemmer_stem(stmr.stmr, w, C.int(len(word))))
-	size := C.sb_stemmer_length(stmr.stmr)
+	if res == nil {
+		return word // TODO: Is this what we want?
+	}
+	// We don't free res, snowball's documentation says:
+	// The return value is owned by the stemmer - it must not be freed
 
+	size := C.sb_stemmer_length(stmr.stmr)
 	buf := C.GoBytes(res, size)
 	return string(buf)
 }
