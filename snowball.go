@@ -15,10 +15,12 @@ import "C"
 
 const (
 	// Version is the library version
-	Version = "0.4.1"
+	Version = "0.4.2"
 )
 
 // Stemmer structure
+// Warning: Stemmers are not goroutine safe, create a stemmer per gorutine or
+// use a pool (such as sync.Pool) to esnure safty.
 type Stemmer struct {
 	lang string
 	stmr *C.struct_sb_stemmer
