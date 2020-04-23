@@ -8,6 +8,11 @@ func TestList(t *testing.T) {
 	if len(LangList()) == 0 {
 		t.Fatal("No langs")
 	}
+
+	if len(Languages()) == 0 {
+		t.Fatal("No langs")
+	}
+
 }
 
 func TestListEnglish(t *testing.T) {

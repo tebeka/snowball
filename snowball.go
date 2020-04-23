@@ -15,7 +15,7 @@ import "C"
 
 const (
 	// Version is the library version
-	Version = "0.4.2"
+	Version = "0.5.0"
 )
 
 // Stemmer structure
@@ -77,7 +77,13 @@ func (stmr *Stemmer) Stem(word string) string {
 }
 
 // LangList returns the list of languages supported by snowball
+// DEPRECATED: Use Languages
 func LangList() []string {
+	return Languages()
+}
+
+// Languages returns the list of languages supported by snowball
+func Languages() []string {
 	return langList
 }
 
