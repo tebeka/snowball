@@ -1,3 +1,7 @@
+2022-11-14 version 0.6.0
+* Bump C library to 2.2.0
+* Added SnowballVersion
+
 2019-04-17 version 0.3.0
 * Bump C lib version
 * example_test.go
