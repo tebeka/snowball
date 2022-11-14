@@ -13,6 +13,7 @@ func Example() {
 		fmt.Println("error", err)
 		return
 	}
+	defer stemmer.Close()
 	fmt.Println(stemmer.Stem("running"))
 	// Output:
 	// 29 languages

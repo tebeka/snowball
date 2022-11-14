@@ -3,7 +3,6 @@ package snowball
 
 import (
 	"fmt"
-	"runtime"
 	"unsafe"
 )
 
@@ -28,18 +27,9 @@ type Stemmer struct {
 	stmr *C.struct_sb_stemmer
 }
 
-// free C resources
-func free(stmr *Stemmer) {
-	if stmr.stmr != nil {
-		C.sb_stemmer_delete(stmr.stmr)
-		stmr.stmr = nil
-	}
-}
-
 // New creates a new stemmer for lang
 func New(lang string) (*Stemmer, error) {
 	clang := C.CString(lang)
-	defer C.free(unsafe.Pointer(clang))
 
 	stmr := &Stemmer{
 		lang,
@@ -50,9 +40,17 @@ func New(lang string) (*Stemmer, error) {
 		return nil, fmt.Errorf("can't create stemmer for lang %s", lang)
 	}
 
-	runtime.SetFinalizer(stmr, free)
-
 	return stmr, nil
+}
+
+// Close closes the stemmer and frees the underlying C memory
+func (stmr *Stemmer) Close() error {
+	if stmr.stmr != nil {
+		C.sb_stemmer_delete(stmr.stmr)
+		stmr.stmr = nil
+	}
+
+	return nil
 }
 
 // Lang return the stemmer language

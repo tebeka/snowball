@@ -1,4 +1,4 @@
-// +build ignore
+//go:build ignore
 
 package main
 
@@ -40,6 +40,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "error: %s\n", err)
 		os.Exit(1)
 	}
+	defer smtr.Close()
 
 	data, err := ioutil.ReadFile(flag.Arg(0))
 	if err != nil {
