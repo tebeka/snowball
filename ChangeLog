@@ -1,3 +1,7 @@
+2022-11-14 version 0.7.0
+* Stemmer.Close
+* Use testify for testing
+
 2022-11-14 version 0.6.0
 * Bump C library to 2.2.0
 * Added SnowballVersion
