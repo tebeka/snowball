@@ -63,3 +63,7 @@ func TestStem(t *testing.T) {
 		})
 	}
 }
+
+func TestSnowballVersion(t *testing.T) {
+	require.Equal(t, "2.2.0", SnowballVersion)
+}
