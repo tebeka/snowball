@@ -15,6 +15,6 @@ func Example() {
 	}
 	fmt.Println(stemmer.Stem("running"))
 	// Output:
-	// 26 languages
+	// 29 languages
 	// run
 }

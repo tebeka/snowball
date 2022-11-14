@@ -15,7 +15,9 @@ import "C"
 
 const (
 	// Version is the library version
-	Version = "0.5.0"
+	Version = "0.6.0"
+	// SnowballVersion is the underlying snowball library version
+	SnowballVersion = "2.2.0"
 )
 
 // Stemmer structure
