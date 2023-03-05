@@ -2,6 +2,7 @@
 package snowball
 
 import (
+	_ "embed"
 	"fmt"
 	"unsafe"
 )
@@ -15,6 +16,11 @@ import "C"
 const (
 	// Version is the library version
 	Version = "0.7.0"
+)
+
+var (
+	//go:embed "lib-version.txt"
+	SnowballVersion string
 )
 
 // Stemmer structure
