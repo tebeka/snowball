@@ -1,7 +1,18 @@
 #!/bin/bash
 # Fetch snowball sources
 
-version=2.2.0
+case $1 in
+    -h | --help ) echo "usage: $(basename $0) VERSION"; exit;;
+esac
+
+if [ $# -ne 1 ]; then
+    echo "error: wrong number of arguments" 1>&2
+fi
+
+set -e
+
+version=$1
+echo "upgrading to version ${version}"
 lib=libstemmer_c-${version}
 tarball=${lib}.tar.gz
 

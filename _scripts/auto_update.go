@@ -10,7 +10,9 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"os/exec"
 	"strings"
+	"time"
 )
 
 func main() {
@@ -19,19 +21,39 @@ func main() {
 		log.Fatalf("error: current - %s", err)
 	}
 
-	latest, err := latestVersion(context.Background())
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
+	latest, err := latestVersion(ctx)
 	if err != nil {
 		log.Fatalf("error: latest - %s", err)
 	}
 
+	log.Printf("info: latest=%s, current=%s", latest, current)
+
 	if current == latest {
-		log.Printf("info: no version change (%s)", current)
+		log.Printf("info: no version change, exiting")
 		return
 	}
 
 	if latest < current {
-		log.Fatalf("error: latest (%s) < current (%s)", latest, current)
+		log.Fatalf("error: latest < current")
 	}
+
+	log.Printf("info: updating lib")
+
+	ctx, cancel = context.WithTimeout(context.Background(), 30*time.Second)
+	defer cancel()
+	if err := exec.CommandContext(ctx, "bash", "_scripts/update-c.sh", latest).Run(); err != nil {
+		log.Fatalf("error: %s", err)
+	}
+
+	ctx, cancel = context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	for cmd in [][]string{
+		{"git", "add", "."},
+		{"git", "commit", "-m", "
+	}
+
 }
 
 func currentVersion() (string, error) {
