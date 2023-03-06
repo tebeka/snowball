@@ -15,17 +15,20 @@ import (
 )
 
 func Example() {
-	fmt.Printf("%d languages\n", len(snowball.Languages()))
 	stemmer, err := snowball.New("english")
 	if err != nil {
 		fmt.Println("error", err)
 		return
 	}
 	defer stemmer.Close()
-	fmt.Println(stemmer.Stem("running"))
+
+	fmt.Println(stemmer.Stem("worked"))
+	fmt.Println(stemmer.Stem("working"))
+	fmt.Println(stemmer.Stem("works"))
 	// Output:
-	// 29 languages
-	// run
+	// work
+	// work
+	// work
 }
 ```
 
