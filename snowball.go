@@ -23,15 +23,15 @@ var (
 	SnowballVersion string
 )
 
-// Stemmer structure
-// Warning: Stemmers are not goroutine safe, create a stemmer per gorutine or
-// use a pool (such as sync.Pool) to esnure safty.
+// Stemmer structure.
+// Warning: Stemmers are not goroutine safe, create a stemmer per goroutine or
+// use a pool (such as sync.Pool) to ensure safety.
 type Stemmer struct {
 	lang string
 	stmr *C.struct_sb_stemmer
 }
 
-// New creates a new stemmer for lang
+// New creates a new stemmer for lang.
 func New(lang string) (*Stemmer, error) {
 	clang := C.CString(lang)
 
@@ -47,7 +47,7 @@ func New(lang string) (*Stemmer, error) {
 	return stmr, nil
 }
 
-// Close closes the stemmer and frees the underlying C memory
+// Close closes the stemmer and frees the underlying C memory.
 func (stmr *Stemmer) Close() error {
 	if stmr.stmr != nil {
 		C.sb_stemmer_delete(stmr.stmr)
@@ -57,12 +57,12 @@ func (stmr *Stemmer) Close() error {
 	return nil
 }
 
-// Lang return the stemmer language
+// Lang return the stemmer language.
 func (stmr *Stemmer) Lang() string {
 	return stmr.lang
 }
 
-// Stem returns them stem of word (e.g. running -> run)
+// Stem returns them stem of word (e.g. running -> run).
 func (stmr *Stemmer) Stem(word string) string {
 	ptr := unsafe.Pointer(C.CString(word))
 	defer C.free(ptr)
@@ -80,13 +80,13 @@ func (stmr *Stemmer) Stem(word string) string {
 	return string(buf)
 }
 
-// LangList returns the list of languages supported by snowball
+// LangList returns the list of languages supported by snowball.
 // DEPRECATED: Use Languages
 func LangList() []string {
 	return Languages()
 }
 
-// Languages returns the list of languages supported by snowball
+// Languages returns the list of languages supported by snowball.
 func Languages() []string {
 	return langList
 }
