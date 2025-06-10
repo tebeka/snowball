@@ -1,3 +1,7 @@
+2025-06-10 version 0.8.0
+* Bump to 3.0.1
+* Fix example
+
 2022-11-14 version 0.7.0
 * Stemmer.Close
 * Use testify for testing

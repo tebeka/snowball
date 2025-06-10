@@ -15,7 +15,7 @@ import "C"
 
 const (
 	// Version is the library version
-	Version = "0.7.0"
+	Version = "0.8.0"
 )
 
 var (
