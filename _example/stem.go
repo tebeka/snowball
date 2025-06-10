@@ -40,7 +40,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "error: %s\n", err)
 		os.Exit(1)
 	}
-	defer smtr.Close()
+	defer stmr.Close()
 
 	data, err := ioutil.ReadFile(flag.Arg(0))
 	if err != nil {

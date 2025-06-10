@@ -34,7 +34,12 @@ func Example() {
 
 This project was mostly a learning exercise for me, I don't consider it production quality.
 
+## Installing
+
+`go get github.com/tebeka/snowball@latest`
+
+You will need a C compiler on your machine.
+
 ## Development
 
 If you want to update the underlying C library, run `update-c.sh`. Make sure to run the tests after.
-
