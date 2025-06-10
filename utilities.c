@@ -282,19 +282,19 @@ extern int find_among(struct SN_env * z, const struct among * v, int v_size) {
             first_key_inspected = 1;
         }
     }
+    w = v + i;
     while (1) {
-        w = v + i;
         if (common_i >= w->s_size) {
             z->c = c + w->s_size;
-            if (w->function == 0) return w->result;
+            if (w->function == NULL) return w->result;
             {
                 int res = w->function(z);
                 z->c = c + w->s_size;
                 if (res) return w->result;
             }
         }
-        i = w->substring_i;
-        if (i < 0) return 0;
+        if (!w->substring_i) return 0;
+        w += w->substring_i;
     }
 }
 
@@ -337,19 +337,19 @@ extern int find_among_b(struct SN_env * z, const struct among * v, int v_size) {
             first_key_inspected = 1;
         }
     }
+    w = v + i;
     while (1) {
-        w = v + i;
         if (common_i >= w->s_size) {
             z->c = c - w->s_size;
-            if (w->function == 0) return w->result;
+            if (w->function == NULL) return w->result;
             {
                 int res = w->function(z);
                 z->c = c - w->s_size;
                 if (res) return w->result;
             }
         }
-        i = w->substring_i;
-        if (i < 0) return 0;
+        if (!w->substring_i) return 0;
+        w += w->substring_i;
     }
 }
 
@@ -434,7 +434,7 @@ extern int slice_from_v(struct SN_env * z, const symbol * p) {
 }
 
 extern int slice_del(struct SN_env * z) {
-    return slice_from_s(z, 0, 0);
+    return slice_from_s(z, 0, NULL);
 }
 
 extern int insert_s(struct SN_env * z, int bra, int ket, int s_size, const symbol * s) {

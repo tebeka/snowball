@@ -22,9 +22,10 @@ func Example() {
 	}
 	defer stemmer.Close()
 
-	fmt.Println(stemmer.Stem("worked"))
-	fmt.Println(stemmer.Stem("working"))
-	fmt.Println(stemmer.Stem("works"))
+    for _, word := []string{"worked", "working", "works"} {
+        fmt.Println(stemmer.Stem(word))
+    }
+
 	// Output:
 	// work
 	// work

@@ -1,10 +1,5 @@
 
-#include <limits.h>
-
 #include "api.h"
-
-#define MAXINT INT_MAX
-#define MININT INT_MIN
 
 #define HEAD 2*sizeof(int)
 
@@ -13,10 +8,16 @@
 #define CAPACITY(p)    ((int *)(p))[-2]
 
 struct among
-{   int s_size;     /* number of chars in string */
-    const symbol * s;       /* search string */
-    int substring_i;/* index to longest matching substring */
-    int result;     /* result of the lookup */
+{
+    /* Number of symbols in s. */
+    int s_size;
+    /* Search string. */
+    const symbol * s;
+    /* Delta of index to longest matching substring, or 0 if none. */
+    int substring_i;
+    /* Result of the lookup. */
+    int result;
+    /* Optional condition routine, or NULL if none. */
     int (* function)(struct SN_env *);
 };
 
